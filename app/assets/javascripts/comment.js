@@ -1,6 +1,7 @@
 $(function(){
-  console.log('comment.js test')
+
   function buildHTML(message){
+    var image_url = (comment.image)? `<image class="lower-message_image" src="${comment.image}">`:"";
     var html = `<div class="upper-message">
                   <div class="upper-message__user-name">
                     ${message.user_name}
@@ -13,7 +14,8 @@ $(function(){
                   <div class="lower-message__content">
                     ${message.content}
                   </div>
-                </div>`
+                  ${image_url}
+                </li>`
     return html;
   }
   $('#new_message').on('submit', function(e){
@@ -21,7 +23,6 @@ $(function(){
     var formData = new FormData(this);
     var url = $(this).attr('action')
     var href = window.location.href
-    console.log(url, window.location.href)
     $.ajax({
       url: href,
       type: "POST",
@@ -41,7 +42,6 @@ $(function(){
       $('.form__submit').prop('disabled', false);
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
     })
-    console.log('e',e)
     .fail(function () {
       // console.log("XMLHttpRequest : " + XMLHttpRequest.status);
       // console.log("textStatus     : " + textStatus);
