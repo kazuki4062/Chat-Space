@@ -3,10 +3,17 @@
   color: $white;
   width: 300px;
   .header {
+    padding: 0 20px;
     background-color: $side_blue_dark;
     height: 100px;
-    line-height: 100px;
-    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    &__box {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-weight: bold;
+    }
     &__name {
       display: inline-block;
       font-size: $side_header_font;
@@ -28,6 +35,7 @@
   .groups {
     background-color: $side_blue_light;
     height: calc(100vh - 100px);
+    overflow: scroll;
     padding: 0 20px;
     .group {
       box-sizing: border-box;
