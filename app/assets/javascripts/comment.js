@@ -1,7 +1,7 @@
 $(function(){
 
   function buildHTML(message){
-    var image_url = (comment.image)? `<image class="lower-message_image" src="${comment.image}">`:"";
+    // var image_url = (comment.image)? `<image class="lower-message_image" src="${comment.image}">`:"";
     var html = `<div class="upper-message">
                   <div class="upper-message__user-name">
                     ${message.user_name}
@@ -14,12 +14,12 @@ $(function(){
                   <div class="lower-message__content">
                     ${message.content}
                   </div>
-                  ${image_url}
                 </li>`
     return html;
   }
   $('#new_message').on('submit', function(e){
-    e.preventDefault();
+    console.log(e)
+    e.preventDefault()
     var formData = new FormData(this);
     var url = $(this).attr('action')
     var href = window.location.href
@@ -36,6 +36,7 @@ $(function(){
       error:function(){console.log('Miss..');}
     })
     .done(function(data){
+      console.log(data)
       var html = buildHTML(data);
       $('.messages').append(html);
       $("#new_message")[0].reset();
