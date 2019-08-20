@@ -29,12 +29,9 @@
           %input{name: 'group[user_ids][]', type: 'hidden', value: "#{current_user.id}"}
           %p.chat-group-user__name
             = current_user.name
-    - group.users.where.not(id: current_user.id).each do |user|
-        
-      / 参加中のグループメンバーを一覧表示させる記述
-
-      / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
+    
+    
       .chat-group-form__field.clearfix
-      .chat-group-form__field--left
-      .chat-group-form__field--right
-      = f.submit class: 'chat-group-form__action-btn'
+        .chat-group-form__field--left
+        .chat-group-form__field--right
+          = f.submit class: 'chat-group-form__action-btn'
