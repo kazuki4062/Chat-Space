@@ -39,7 +39,6 @@ $(function(){
         $("#user_search_result").empty();
           if (members.length !== 0) {
             members.forEach(function(user){
-              console.log(user)
               appendUsers(user);
             });
           }
@@ -52,7 +51,6 @@ $(function(){
 
   $(function() {
     $(document).on("click", '.user-search-add', function() {
-      // console.log("test");
       var name = $(this).attr("data-user-name");
       var user_id = $(this).attr("data-user-id");
       appendMembers(name, user_id);
