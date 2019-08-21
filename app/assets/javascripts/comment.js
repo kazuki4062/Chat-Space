@@ -49,11 +49,11 @@ $(function(){
       // console.log("errorThrown    : " + errorThrown.message);
     });
   })
-    var reloadMessages = function() {
+    var reloadMessages = setInterval(function() {
         if (window.location.href.match(/\/groups\/\d+\/messages/)){
-        last_message_id = $('.message').last().data('id')
-        console.log(last_message_id)
+        var last_message_id = $('.message').last().data('id')
         var href =  'api/messages'
+        // debugger
         $.ajax({
           url: href,
           type: 'GET',
@@ -61,24 +61,24 @@ $(function(){
           data: {id: last_message_id}
         })
         .done(function (messages) {
-          var insertHTML = '';
           messages.forEach(function (message) {
-            insertHTML = buildHTML(message);
+            var insertHTML = buildHTML(message);
             $('.messages').append(insertHTML);
             $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
           })          
         })
         .fail(function () {
-          // alert('自動更新に失敗しました');
-          console.log("NO")
+          alert('自動更新に失敗しました');
         })
-        .always(function(){
-          $(".form__submit").removeAttr("disabled");
-        });
+      } else {
+        clearInterval(reloadMessages);
       }
-};
-
-    setInterval(reloadMessages, 5000);
-  
+    } , 5000);
 });
 
+        // var last_message = $(".messages .message:last-child");
+        // var last_message_id = (typeof $(".messages .message:last-child").get(0) == "undefined" ) ? 0 : last_message.data("id");
+        // last_message_id = $(".messages .message:last-child").data('id')
+        // .always(function(){
+        //   $(".form__submit").removeAttr("disabled");
+        // setInterval(reloadMessages, 5000);
