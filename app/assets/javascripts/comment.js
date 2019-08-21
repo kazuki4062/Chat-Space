@@ -75,10 +75,3 @@ $(function(){
       }
     } , 5000);
 });
-
-        // var last_message = $(".messages .message:last-child");
-        // var last_message_id = (typeof $(".messages .message:last-child").get(0) == "undefined" ) ? 0 : last_message.data("id");
-        // last_message_id = $(".messages .message:last-child").data('id')
-        // .always(function(){
-        //   $(".form__submit").removeAttr("disabled");
-        // setInterval(reloadMessages, 5000);
